@@ -1,18 +1,46 @@
 import { styles } from "@/styles/styles";
 import { useState } from "react";
 import { KeyboardAvoidingView, Platform, View } from "react-native";
-import { Button, Text, TextInput } from "react-native-paper";
-//keyboardavoingview-to solve keyboard hiding your input feild  
+import { Button, Text, TextInput, useTheme } from "react-native-paper";
+// KeyboardAvoidingView → prevents keyboard hiding input fields
+
 const AuthScreen = () => {
     const [isSignUp, setIsSignUp] = useState<boolean>(false);
-    const behaviorOS = Platform.OS === "ios" ? "padding" : "height"; //behavior-It adds padding to the bottom of the view(ios)
-    const checkSignup = isSignUp ? "Create Account" : "Welcome back..."
-    //to handle signUp/signIn
-    const handleSwitchMode = () => setIsSignUp((curr) => !curr)
+    //state to track what the user types
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState<string | null>(null);
+
+    const behaviorOS = Platform.OS === "ios" ? "padding" : "height";
+
+    const checkSignup = isSignUp ? "Create Account" : "Welcome back...";
+
+    const handleSwitchMode = () => {
+        setIsSignUp((curr) => !curr);
+        setError(null);
+    };
+
+    const theme = useTheme();
+
+    ///to handle auth
+    const handleAuth = async () => {
+        setError(null);
+
+        if (!email || !password) {
+            setError("Please fill all credentials");
+            return;
+        }
+
+        if (password.length < 6) {
+            setError("Password must be at least 6 characters long");
+            return;
+        }
+    };
+
     return (
         <KeyboardAvoidingView style={styles.container} behavior={behaviorOS}>
-
             <View style={styles.content}>
+                <Text style={styles.name}>Habit Tracker 🔖</Text>
 
                 <View style={styles.formCard}>
                     <Text style={styles.title}>{checkSignup}</Text>
@@ -24,6 +52,8 @@ const AuthScreen = () => {
                         placeholder="example@gmail.com"
                         mode="outlined"
                         style={styles.input}
+                        value={email}
+                        onChangeText={setEmail}
                     />
 
                     <TextInput
@@ -32,20 +62,31 @@ const AuthScreen = () => {
                         secureTextEntry
                         mode="outlined"
                         style={styles.input}
+                        value={password}
+                        onChangeText={setPassword}
                     />
 
+                    {error && (
+                        <Text style={{ color: theme.colors.error }}>{error}</Text>
+                    )}
 
-                    <Button mode="contained" style={styles.button}>
-                        {isSignUp ? "SignUp" : "SignIn"}
+                    <Button
+                        onPress={handleAuth}
+                        mode="contained"
+                        style={styles.button}
+                    >
+                        {isSignUp ? "Sign Up" : "Sign In"}
                     </Button>
 
                     <Button onPress={handleSwitchMode} style={styles.toggleButton}>
-                        {isSignUp ? "Already have an account? Sign In" : "Don't have an account? SignUp"}
+                        {isSignUp
+                            ? "Already have an account? Sign In"
+                            : "Don't have an account? Sign Up"}
                     </Button>
                 </View>
             </View>
         </KeyboardAvoidingView>
     );
-}
+};
 
 export default AuthScreen;
