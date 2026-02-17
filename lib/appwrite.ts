@@ -2,6 +2,6 @@
 //credentials
 import { Client } from "react-native-appwrite";
 const client = new Client()
-  .setEndpoint("https://nyc.cloud.appwrite.io/v1")
-  .setProject("6993ea4b00082418d702")
-  .setPlatform("co.anandhu.habit-tracker");
+  .setEndpoint(process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT)
+  .setProject(process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID)
+  .setPlatform(process.env.EXPO_PUBLIC_APPWRITE_PLATFORM);
