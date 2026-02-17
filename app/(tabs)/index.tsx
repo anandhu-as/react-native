@@ -5,7 +5,7 @@ export default function Index() {
     <View
       style={styles.view}
     >
-    <Link href="/(tabs)/login">login</Link>
+      <Link href="/(tabs)/login">login</Link>
 
     </View>
   );
@@ -16,5 +16,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   }
-  
+
 })

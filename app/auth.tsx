@@ -1,10 +1,13 @@
+import { useAuth } from "@/lib/auth-context";
 import { styles } from "@/styles/styles";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { KeyboardAvoidingView, Platform, View } from "react-native";
 import { Button, Text, TextInput, useTheme } from "react-native-paper";
 // KeyboardAvoidingView → prevents keyboard hiding input fields
 
 const AuthScreen = () => {
+    const router=useRouter()
     const [isSignUp, setIsSignUp] = useState<boolean>(false);
     //state to track what the user types
     const [email, setEmail] = useState<string>("");
@@ -14,7 +17,7 @@ const AuthScreen = () => {
     const behaviorOS = Platform.OS === "ios" ? "padding" : "height";
 
     const checkSignup = isSignUp ? "Create Account" : "Welcome back...";
-
+    const { signIn, signUp } = useAuth()//auth hook
     const handleSwitchMode = () => {
         setIsSignUp((curr) => !curr);
         setError(null);
@@ -24,17 +27,33 @@ const AuthScreen = () => {
 
     ///to handle auth
     const handleAuth = async () => {
-        setError(null);
+
 
         if (!email || !password) {
             setError("Please fill all credentials");
             return;
+        }
+        if (isSignUp) {
+            const error = await signUp(email, password)
+            if (error) {
+                setError(error)
+                return
+            }
+        } else {
+            const error = await signIn(email, password)
+            if (error) {
+                setError(error)
+                return
+            }
+            router.replace("/")
         }
 
         if (password.length < 6) {
             setError("Password must be at least 6 characters long");
             return;
         }
+
+        
     };
 
     return (
