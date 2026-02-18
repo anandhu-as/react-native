@@ -1,10 +1,12 @@
 import { AuthProvider, useAuth } from "@/lib/auth-context";
-import { Stack, useRouter, useSegments } from "expo-router";
+import { Stack, useRootNavigationState, useRouter, useSegments } from "expo-router";
 import React, { useEffect } from "react";
 
-import { useRootNavigationState } from "expo-router";
+// Add these imports
+import { Provider as PaperProvider } from "react-native-paper";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-function RootGuard() {
+const RootGuard = () => {
   const router = useRouter();
   const segments = useSegments();
   const navigationState = useRootNavigationState();
@@ -23,17 +25,20 @@ function RootGuard() {
   }, [user, loading, navigationState, segments]);
 
   return null;
-}
-
+};
 
 export default function RootLayout() {
   return (
-    <AuthProvider>
-      <RootGuard />
-      <Stack>
-        <Stack.Screen name="auth" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-    </AuthProvider>
+    <PaperProvider>
+      <SafeAreaProvider>
+        <AuthProvider>
+          <RootGuard />
+          <Stack>
+            <Stack.Screen name="auth" options={{ headerShown: false }} />
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+        </AuthProvider>
+      </SafeAreaProvider>
+    </PaperProvider>
   );
 }
