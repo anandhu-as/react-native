@@ -1,50 +1,77 @@
-# Welcome to your Expo app 👋
+HabitTracker - React Native
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A simple habit tracking mobile app built with React Native and Expo to help you create, track, and maintain daily habits.
+This project uses Appwrite for backend services including authentication and database, making it a full-stack beginner-friendly project.
 
-## Get started
+🏗️ Features
 
-1. Install dependencies
+User Authentication – Sign up, log in, and manage users using Appwrite
 
-   ```bash
+Habit Management – Add, update, and delete habits
+
+Track Daily Progress – Mark habits as complete each day
+
+Simple and Clean UI – Easy to use and responsive
+
+Built with React Native, TypeScript, and Expo
+
+💻 Tech Stack
+
+React Native – Cross-platform mobile development
+
+Expo – Simplifies building and testing the app
+
+TypeScript – Type safety and better code quality
+
+Appwrite – Backend services (database & authentication)
+
+React Navigation – For app navigation
+
+🚀 Getting Started
+
+1. Clone the repository
+   git clone https://github.com/anandhu-as/HabitTracker-react-native.git
+   cd HabitTracker-react-native
+
+2. Install dependencies
    npm install
-   ```
 
-2. Start the app
+# or
 
-   ```bash
+yarn install
+
+3. Configure Appwrite
+
+Create an Appwrite project at https://appwrite.io
+
+Set up a database for habits and a users collection
+
+Update your Appwrite endpoint and project ID in your app (e.g., in a config file)
+
+4. Run the app
    npx expo start
-   ```
 
-In the output, you'll find options to open the app in a
+Open the app in an emulator or Expo Go on your device.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+📂 Project Structure
+HabitTracker-react-native/
+│
+├── App.tsx # Main entry point
+├── package.json # Project configuration
+├── assets/ # Images and other static assets
+├── components/ # Reusable UI components
+├── screens/ # App screens
+├── navigation/ # Navigation setup
+└── services/ # Appwrite API integration
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+🛠️ Future Improvements
 
-## Get a fresh project
+Add habit reminders & notifications
 
-When you're ready, run:
+Show streaks and progress charts
 
-```bash
-npm run reset-project
-```
+Offline support and local caching
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Dark mode UI
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+More polished animations and UI
