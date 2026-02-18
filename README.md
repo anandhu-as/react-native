@@ -38,13 +38,6 @@ This project uses Appwrite for backend services including authentication and dat
 
 # or
 
-yarn install
-HabitTracker-react-native/
-│
-├── App.tsx # Main entry point
-├── package.json # Project configuration
-├── assets/ # Images and other static assets
-├── components/ # Reusable UI components
-├── screens/ # App screens
-├── navigation/ # Navigation setup
-└── services/ # Appwrite API integration
+  yarn install
+
+
