@@ -36,8 +36,6 @@ This project uses Appwrite for backend services including authentication and dat
    ```
    npm install
 
-# or
 
-  yarn install
 
 
