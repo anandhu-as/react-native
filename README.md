@@ -33,7 +33,7 @@ This project uses Appwrite for backend services including authentication and dat
    ```bash
    git clone https://github.com/anandhu-as/HabitTracker-react-native.git
    cd HabitTracker-react-native
-   ```
+   ```'
    npm install
 
 
